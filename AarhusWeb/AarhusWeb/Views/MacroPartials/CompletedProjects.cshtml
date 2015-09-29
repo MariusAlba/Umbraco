@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{ 
+	var startNode = Umbraco.TypedContent(1067);
+	var completedProjects = startNode.Children().Where("status.Contains(\"Completed\")").OrderBy("CreateDate desc");
+	
+	var projectToDisplay = completedProjects.Take(2);
+}
+	<ul>
+@{
+	
+	foreach(var project in projectToDisplay){
+		<li><a href = "@project.Url">@project.Name</a></li>
+	}
+	
+
+}
+	</ul>
+	

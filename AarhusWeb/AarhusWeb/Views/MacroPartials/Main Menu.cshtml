@@ -1,0 +1,73 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+ 
+
+	
+	
+	
+@*
+    This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
+    This is the home page for a standard website.
+    It also highlights the current active page/section in the navigation with the css class "current".
+*@
+	
+	
+
+
+ @{ var selection = CurrentPage.Site().Children.Where("Visible"); 
+ 	var root = CurrentPage.Site();
+ }
+
+<ul class="nav navbar-nav">
+	<li> <a href = "/">Home</a>
+	</li>
+	@*Iterating every item in the selection list*@
+    @foreach (var item in selection)
+    {
+		@*the class of the <li> element is dropdown only if the node has at least 1 child*@
+        <li class="@(item.Children.Where("Visible").Count() > 0 ? "dropdown" : null)">
+            
+			@*Verifying if the node has children*@
+			@if (item.Children.Where("Visible").Count() > 0)
+            {
+				@*Creating the <a> element for the parent node*@
+				<a href="@item.Url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					@item.Name
+					<span class="caret"></span>
+				</a>
+					
+				@*Creating a nested <ul> that contains the children nodes*@
+                <ul class="dropdown-menu">
+							
+					<li><a href="@item.Url">@item.Name</a></li>
+					@foreach (var childPage in item.Children.Where("Visible"))
+					{
+						@*Verifying if the childPage is a ProjectItem*@
+						if(childPage.DocumentTypeAlias == "ProjectItem")
+						{
+							@*Verifying if the ProjectItem is completed*@
+							if(childPage.Status == "Completed"){
+								
+								@*Creating the submenu element for the node*@
+								<li><a href="@childPage.Url">@childPage.Name</a></li>
+							}
+						}
+						else{
+						@*If ypu are here the childPage is not a ProjectItem*@
+							
+							@*Creating the submenu element for the node*@
+							<li><a href="@childPage.Url">@childPage.Name</a></li>
+						}
+					}
+				</ul>
+			}else{
+				
+				@*If you are here the item does not have children*@
+						
+				@*creating the <a> element for the item*@
+				<a href="@item.Url">@item.Name</a>
+			}
+        </li>
+    }
+</ul>
+      
