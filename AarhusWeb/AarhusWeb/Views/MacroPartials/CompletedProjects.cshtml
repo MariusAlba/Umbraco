@@ -1,11 +1,12 @@
 ﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
 
 @{ 
-	var startNode = Umbraco.TypedContent(1067);
+	var startNode = Umbraco.TypedContent(1148);
 	var completedProjects = startNode.Children().Where("status.Contains(\"Completed\")").OrderBy("CreateDate desc");
 	
-	var projectToDisplay = completedProjects.Take(2);
+	var projectToDisplay = completedProjects.Take(3);
 }
+
 	<ul>
 @{
 	
@@ -16,4 +17,3 @@
 
 }
 	</ul>
-	

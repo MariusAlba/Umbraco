@@ -3,12 +3,13 @@
 var memberService =
 ApplicationContext.Current.Services.MemberService;
 
-var members = memberService.GetMembersByGroup("active");
-var prospectMembers = memberService.GetMembersByGroup("prospect");
+var members = memberService.GetMembersByGroup("Active");
+var prospectMembers = memberService.GetMembersByGroup("Prospect");
 }
 @foreach (var member in members) 
 {
 <p>
+@member.GetValue("memberType") <br/>
 @(member.GetValue("firstname") + " "
 + member.GetValue("lastname")) <br/>
 @member.GetValue("address")<br />
@@ -20,6 +21,7 @@ Mobile: @member.GetValue("mobile")<br />
 @foreach (var member in prospectMembers) 
 {
 <p>
+@member.GetValue("memberType") <br/>
 @(member.GetValue("firstname") + " "
 + member.GetValue("lastname")) <br/>
 Mobile: @member.GetValue("mobile")<br />

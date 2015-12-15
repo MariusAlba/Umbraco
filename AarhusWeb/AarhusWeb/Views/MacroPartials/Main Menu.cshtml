@@ -16,6 +16,8 @@
 
  @{ var selection = CurrentPage.Site().Children.Where("Visible"); 
  	var root = CurrentPage.Site();
+   
+   
  }
 
 <ul class="nav navbar-nav">
@@ -42,15 +44,17 @@
 					<li><a href="@item.Url">@item.Name</a></li>
 					@foreach (var childPage in item.Children.Where("Visible"))
 					{
-						@*Verifying if the childPage is a ProjectItem*@
-						if(childPage.DocumentTypeAlias == "ProjectItem")
+						@*Verifying if the childPage is a Projects Item*@
+						if(childPage.DocumentTypeAlias == "ProjectsItem")
 						{
 							@*Verifying if the ProjectItem is completed*@
 							if(childPage.Status == "Completed"){
 								
 								@*Creating the submenu element for the node*@
-								<li><a href="@childPage.Url">@childPage.Name</a></li>
+								<li><a href="@childPage.Url">@childPage.Name : @childPage.Status</a></li>
+							
 							}
+							
 						}
 						else{
 						@*If ypu are here the childPage is not a ProjectItem*@
@@ -67,6 +71,7 @@
 				@*creating the <a> element for the item*@
 				<a href="@item.Url">@item.Name</a>
 			}
+		
         </li>
     }
 </ul>

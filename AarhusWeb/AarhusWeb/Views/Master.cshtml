@@ -19,32 +19,57 @@
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-	<link rel="stylesheet" href="css/style.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+
+
+
+    <link rel="stylesheet" href="~/Content/Site.css">
     <script src="~/scripts/jquery-2.1.4.min.js"></script>
-	<link rel="stylesheet" href="/Content/bootstrap.min.css">
+    @*<link rel="stylesheet" href="/Content/bootstrap.min.css">*@
     <script src="~/scripts/bootstrap.js"></script>
-	<script src="js/libs/modernizr-2.0.6.min.js"></script>
-</head>
+    <script src="js/libs/modernizr-2.0.6.min.js"></script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+</head> 
+
 <body>
-
-<nav class="navbar navbar-inverse">
-	@Umbraco.RenderMacro("MainMenu")
-	
-</nav>
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid"></div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+            
+            <div id="navbar" class="navbar-collapse collapse">
+                @Umbraco.RenderMacro("MainMenu")
+            </div>
+        </nav>
+    <div>
+@CurrentPage.GetGridHtml("grid", "Bootstrap3")
 @RenderBody()	
-
-
 @Umbraco.Field("bodytext")
 
-@CurrentPage.GetGridHtml("grid", "Bootstrap3")
-
-<footer class="footer">
-	<div class="container">
-        <p class="text-muted">@Umbraco.Field("footer" , recursive: true)</p>
-      </div>
- </footer>	
-		
-	
-				
+	</div>
+	<div>
+				<hr>
+				<hr>
+<footer class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container">
+        <p class="navbar-text">@Umbraco.Field("footer", recursive:true)</p>
+    	</div>
+</footer>
+			
 </body>
 </html>

@@ -41,12 +41,13 @@
     </fieldset>  
 }
 @if (!Members.GetCurrentLoginStatus().IsLoggedIn){
-	<form class="form-signin">
+	@*<form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         
       </form>    
+*@
 }
 else {
 	<p>You are currently logged in as

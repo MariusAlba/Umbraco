@@ -1,4 +1,5 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = "Master.cshtml";
-}@*aarhus*@
+}
+@CurrentPage.GetGridHtml("newgrid", "Bootstrap3")
